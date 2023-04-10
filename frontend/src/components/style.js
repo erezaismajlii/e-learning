@@ -88,6 +88,35 @@ export default makeStyles((theme) => ({
     fontWeight: "bold",
     color: "#68C2E8",
     fontFamily: "Lucida Sans Unicode",
-}
+},
+bgp: {
+  mozBoxSizing: "content-box",
+  webkitBoxSizing: "content-box",
+  boxSizing: "content-box",
+  margin: "0 auto",
+  maxWidth: "1024px",
+  minWidth: "240px",
+  width: "auto",
+},
 
+bbcleHeader: {
+ // background: "#68C2E8",
+  background: `url(${ Background })`,
+  height: "350px",
+  margin: "0px",
+  position: "",
+  width: "100%",
+},
+
+bbcleHeaderMasthead: {
+ color:"white",
+  height: "224px",
+  marginLeft:"100px",
+  fontSize: "50px",
+  fontWeight:"bold",
+  paddingBottom: "0",
+  paddingTop: "200px",
+  zIndex: "99", 
+  whiteSpace: "nowrap",
+}
 }));
