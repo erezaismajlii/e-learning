@@ -48,3 +48,31 @@ const useStyles = makeStyles(() => ({
       },
     },
   }));
+
+  export default function WelcomePage() {
+    useTitle("Welcome")
+    useCloseNavigation();
+    const classes = useStyles();
+    const history = useHistory();
+    const handleClick = (e) => {
+      history.push(ROUTES.HOME)
+    }
+    return (
+      <div className={classes.root}>
+        <Container className={classes.container}>
+          <img
+            src="https://res.cloudinary.com/phongvn2611/image/upload/v1634738823/english/avatar/website-logo-small_uqfxjx.png"
+            alt="Logo"
+            className={classes.logo}
+          />
+          <Typography className={classes.title} variant="h1">
+          Welcome to the English Website
+          </Typography>
+          <Typography className={classes.desc} variant="body2">
+          Where to start learning English from 0
+          </Typography>
+          <Button className={classes.button} onClick={handleClick}>Begin</Button>
+        </Container>
+      </div>
+    );
+  }
