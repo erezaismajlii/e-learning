@@ -83,7 +83,7 @@ function RegisterPage() {
       setLoading(false);
     }
   };
-  
+
   return (
     <div className="pos-rel w-100vw h-100vh">
       <div className="transform-center">
@@ -102,6 +102,25 @@ function RegisterPage() {
             </div>
             <h1 className={`${classes.title} t-center`}>Register</h1>
           </div>
+
+          <div className="flex-col">
+            <InputCustom
+              label="Email"
+              size="small"
+              placeholder="Enter email"
+              error={Boolean(errors.email)}
+              inputProps={{
+                name: "email",
+                autoFocus: true,
+                ...register("email"),
+              }}
+              onChange={handleChange}
+            />
+            {errors.email && (
+              <p className="text-error">{errors.email?.message}</p>
+            )}
+          </div>
+
           <div className="flex-col">
             <InputCustom
               label="First name"
@@ -149,12 +168,18 @@ function RegisterPage() {
               <p className="text-error">{errors.password?.message}</p>
             )}
           </div>
+
           <div className="flex-col">
             <InputCustom
               label="Confirm password"
               size="small"
               placeholder="Enter the password"
               error={Boolean(errors.confirmPassword)}
+              inputProps={{
+                name: "confirmPassword",
+                type: visibleConfirmPw ? "text" : "password",
+                ...register("confirmPassword"),
+              }}
               onChange={handleChange}
               endAdornment={
                 visibleConfirmPw ? (
@@ -174,9 +199,22 @@ function RegisterPage() {
               <p className="text-error">{errors.confirmPassword?.message}</p>
             )}
           </div>
-          
+
+          <Button
+            className="_btn _btn-primary"
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="large"
+            disabled={loading}
+            endIcon={loading && <LoopIcon className="ani-spin" />}
+          >
+            Register
+          </Button>
+
           <div className="or-option w-100 t-center">HOẶC</div>
         </form>
+
         <div className="has-account">
         Do you already have an account?&nbsp;
           <Link to={ROUTES.LOGIN} className="account-link">
@@ -187,4 +225,5 @@ function RegisterPage() {
     </div>
   );
 }
+
 export default RegisterPage;
