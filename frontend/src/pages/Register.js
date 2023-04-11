@@ -19,11 +19,15 @@ import userApi from "./../apis/userApi";
 import { setMessage } from "./../redux/actions/messageAction";
 
 
+const nameRegex = /^[^\d~`!@#$%^&*\(\)\\\|\.,\?\/\-\+\=\_]+$/gi;
 const schema = yup.object().shape({
+  email: yup.string().trim().required("Enter email").email("Invalid email"),
   name: yup
     .string()
     .trim()
     .required("Enter your first and last name")
+    .matches(nameRegex, "Full name without numbers and special characters"),
+  password: yup
     .string()
     .trim()
     .required("Enter password")
@@ -39,7 +43,9 @@ const schema = yup.object().shape({
 function RegisterPage() {
   useTitle("Register");
   useCloseNavigation();
+
   const classes = makeStyles(formStyle)();
+
   const [visiblePw, setVisiblePw] = useState(false);
   const [visibleConfirmPw, setVisibleConfirmPw] = useState(false);
   const {
@@ -54,6 +60,7 @@ function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     name: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
@@ -66,7 +73,7 @@ function RegisterPage() {
   const handleRegister = async () => {
     try {
       setLoading(true);
-      const res = await userApi.register(user.name, user.password);
+      const res = await userApi.register(user.name, user.email, user.password);
       if (res) {
         dispatch(setMessage(res.data.message, "success"));
         history.replace("/login");
@@ -76,7 +83,7 @@ function RegisterPage() {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className="pos-rel w-100vw h-100vh">
       <div className="transform-center">
