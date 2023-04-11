@@ -1,0 +1,126 @@
+/* #Footer */
+#footer {
+	background: #212529;
+	border-top: 4px solid #212529;
+	font-size: 0.9em;
+	margin-top: 50px;
+	padding: 0;
+	position: relative;
+	clear: both;
+}
+
+#footer .footer-ribbon {
+	background: #999;
+	position: absolute;
+	margin: -44px 0 0 0;
+	padding: 10px 20px 6px 20px;
+}
+
+#footer .footer-ribbon:before {
+	border-right: 10px solid #646464;
+	border-top: 16px solid transparent;
+	content: "";
+	display: block;
+	height: 0;
+	right: 100%;
+	position: absolute;
+	top: 0;
+	width: 7px;
+}
+
+#footer .footer-ribbon span {
+	color: #FFF;
+	font-size: 1.6em;
+	font-family: "Shadows Into Light", cursive;
+}
+
+#footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
+	color: #FFF;
+}
+
+#footer a:not(.btn) {
+	color: #777;
+	-webkit-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+#footer a:not(.btn):hover {
+	text-decoration: none;
+	color: #FFF;
+}
+
+#footer a:not(.btn):focus, #footer a:not(.btn):active {
+	color: #CCC;
+}
+
+#footer a:not(.btn).text-color-light {
+	color: #FFF !important;
+}
+
+#footer a:not(.btn).text-color-light:hover {
+	color: #e6e6e6 !important;
+}
+
+#footer a:not(.btn).text-color-light:focus, #footer a:not(.btn).text-color-light:active {
+	color: #cccccc !important;
+}
+
+#footer a:not(.btn).text-color-default {
+	color: #777 !important;
+}
+
+#footer a:not(.btn).text-color-default:hover {
+	color: #919191 !important;
+}
+
+#footer a:not(.btn).text-color-default:focus, #footer a:not(.btn).text-color-default:active {
+	color: #5e5e5e !important;
+}
+
+#footer a:not(.btn).link-hover-style-1 {
+	position: relative;
+	left: 0px;
+	-webkit-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+#footer a:not(.btn).link-hover-style-1:hover {
+	left: 3px;
+}
+
+#footer ul.nav-list > li:last-child a {
+	border-bottom: 0;
+}
+
+#footer ul.nav-list > li a:hover {
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+#footer ul.list.icons li {
+	margin-bottom: 5px;
+}
+
+#footer .footer-nav nav {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+#footer .footer-nav nav > ul {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none;
+}
+
+#footer .footer-nav.footer-nav-links nav > ul > li:first-child > a {
+	padding-left: 0;
+}
+
+#footer .footer-nav.footer-nav-links nav > ul > li:first-child > a:before {
+	left: 0;
+}
