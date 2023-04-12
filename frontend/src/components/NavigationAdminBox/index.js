@@ -10,3 +10,19 @@ function NavigationAdminBox({ to, imgUrl, title, subTitle }) {
     </Link>
   );
 }
+
+NavigationAdminBox.propTypes = {
+  imgUrl: PropTypes.string,
+  title: PropTypes.string,
+  to: PropTypes.string,
+  subTitle: PropTypes.string,
+};
+
+NavigationAdminBox.defaultProps = {
+  imgUrl: '',
+  title: '',
+  to: '',
+  subTitle: '',
+};
+
+export default NavigationAdminBox;
