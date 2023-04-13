@@ -18,3 +18,25 @@ export default makeStyles((theme) => ({
     height: '4.2rem',
     marginRight: '1.4rem',
   },
+
+  title: {
+    color: 'var(--primary-color)',
+    fontWeight: 600,
+    fontSize: '2rem',
+    letterSpacing: '0.5px',
+    textTransform:'none'
+  },
+
+  subTitle: {
+    display: 'none',
+    marginTop: '0.6rem',
+    color: 'var(--label-color)',
+    fontSize: '1.4rem',
+    fontWeight: 500,
+    letterSpacing: '0.5px',
+
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+}));
