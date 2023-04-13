@@ -124,6 +124,33 @@ const useStyle = makeStyles(() => ({
   },
 }));
 
+export default function ProfilePage() {
+  useTitle("Profile");
+  const dispatch = useDispatch();
+  const classes = useStyle();
+  const { user } = useSelector((state) => state.authReducer);
+  const [data, setData] = useState({
+    name: user.name,
+    password: "",
+    confirmPassword: "",
+  });
+  const [avatar, setAvatar] = useState(false);
+  const [visiblePw, setVisiblePw] = useState(false);
+  const [visibleConfirmPw, setVisibleConfirmPw] = useState(false);
+  const [error, setError] = useState({
+    name: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [editMode, setEditMode] = useState(false);
+  const [image, setImage] = useState("");
+  let avtRes;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
   const handleUpdateAvatar = async (e) => {
     e.preventDefault();
     try {
@@ -152,6 +179,7 @@ const useStyle = makeStyles(() => ({
         confirmPassword: "",
       });
     }
+    try {
       
       if (image !== '') {
         avtRes = await userApi.updateAvatar(image);
@@ -162,6 +190,8 @@ const useStyle = makeStyles(() => ({
       );
       dispatch(setMessage(res.data.message, "success"));
       window.location.reload();
+    } catch (err) {}
+  };
 
   const handleUpdatePassword = async () => {
     if (data.password.length < 6 || data.confirmPassword.length < 6) {
@@ -180,12 +210,16 @@ const useStyle = makeStyles(() => ({
         confirmPassword: "Confirm password does not match",
       });
     }
+    try {
       const res = await userApi.updatePassword(data.password);
       if (res) {
         dispatch(setMessage(res.data.message, "success"));
         setData({ ...data, password: "", confirmPassword: "" });
         window.location.reload();
       }
+    } catch (err) {
+      dispatch(setMessage(err.response.data.message, "error"));
+    }
   };
 
   const handleUpdate = () => {
@@ -302,6 +336,15 @@ const useStyle = makeStyles(() => ({
             )}
           </div>
         )}
+
+        <div className={classes.info}>
+          {!editMode && <p>{user.email}</p>}
+          <p>Have joined in {formatDate(user.createdAt)}</p>
+          <p>
+          Current number of coins: <span className={classes.coin}>{user.coin}</span>
+          </p>
+        </div>
+
         {!editMode ? (
           <Button
             onClick={() => setEditMode(true)}
