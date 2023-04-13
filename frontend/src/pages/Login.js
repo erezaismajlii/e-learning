@@ -46,3 +46,102 @@ function LoginPage() {
       setLoading(false);
     }
   };
+   return (
+    <div className="pos-rel w-100vw h-100vh">
+      <div className="transform-center">
+        <form
+          className={`${classes.root} flex-col`}
+          onSubmit={handleSubmit(handleLogin)}
+          autoComplete="off"
+        >
+          <div className="flex-col">
+            <div className="t-center mt-5">
+              <img
+                className={classes.labelIcon}
+                src="https://res.cloudinary.com/phongvn2611/image/upload/v1637079637/english/avatar/logo-tiny_seqkri.png"
+                alt="logo"
+              />
+            </div>
+            <h1 className={`${classes.title} t-center`}>Log in</h1>
+          </div>
+
+          <div className="flex-col">
+            <InputCustom
+              label="Email"
+              size="small"
+              placeholder="Enter email"
+              onChange={handleChange}
+              error={Boolean(errors.email)}
+              inputProps={{
+                name: "email",
+                autoFocus: true,
+                ...register("email"),
+              }}
+            />
+            {errors.email && (
+              <p className="text-error">{errors.email?.message}</p>
+            )}
+          </div>
+
+          <div className="flex-col">
+            <InputCustom
+              label="Password"
+              size="small"
+              placeholder="Enter password"
+              onChange={handleChange}
+              error={Boolean(errors.password)}
+              inputProps={{
+                name: "password",
+                type: visiblePw ? "text" : "password",
+                ...register("password"),
+              }}
+              endAdornment={
+                visiblePw ? (
+                  <VisibilityIcon
+                    className={`${classes.icon} ${classes.visiblePw}`}
+                    onClick={() => setVisiblePw(false)}
+                  />
+                ) : (
+                  <VisibilityOffIcon
+                    className={classes.icon}
+                    onClick={() => setVisiblePw(true)}
+                  />
+                )
+              }
+            />
+            {errors.password && (
+              <p className="text-error">{errors.password?.message}</p>
+            )}
+          </div>
+
+          <Link className={classes.forgotPw} to={ROUTES.FORGOT_PASSWORD}>
+           Forgot password ?
+          </Link>
+
+          <Button
+            className="_btn _btn-primary"
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={loading}
+            endIcon={loading && <LoopIcon className="ani-spin" />}
+            size="large"
+          >
+            Log in
+          </Button>
+
+          <div className="or-option w-100 t-center">HOẶC</div>
+        </form>
+
+        <div className="has-account">
+        Do not have an account?&nbsp;
+          <Link to={ROUTES.REGISTER} className="account-link">
+          Register
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default LoginPage;
