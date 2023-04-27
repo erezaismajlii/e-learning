@@ -6,7 +6,11 @@ function useTitle(title = 'English Website', isOverride = false) {
     //lejojme ndryshimin e titullit vetem kur kemi override
     if (isOverride) { 
       document.title = title;
+    }
+    else {
+      document.title = title !== 'English Website' ? `${title} - English Website` : title;
     } 
+    
   }, []);
 
   return null;
