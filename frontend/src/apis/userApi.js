@@ -22,5 +22,9 @@ const userApi = {
   getUserInfo: () => {
     return axios.get(`${URL}/get-user-info`);
   },
+  logout: () => {
+    return axios.post(`${URL}/logout`);
+  },
 };
   
+export default userApi;
