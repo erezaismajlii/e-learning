@@ -1,0 +1,109 @@
+$c-1: var(--primary-color);
+$c-2: var(--secondary-color);
+
+.not-found {
+  height: 100vh;
+  &:before,
+  &:after {
+    content: '';
+    background: linear-gradient($c-1, $c-2);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &:before {
+    background: linear-gradient($c-2, $c-1);
+  }
+}
+
+.not-found {
+  background: linear-gradient($c-1, $c-2);
+  overflow: hidden;
+  &:before {
+    height: 105vmax;
+    width: 105vmax;
+    z-index: -4;
+  }
+  &:after {
+    height: 80vmax;
+    width: 80vmax;
+    z-index: -3;
+  }
+}
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-grey);
+  font-family: var(--font);
+  text-shadow: 0 30px 10px rgba(#000, 0.15);
+  &:before {
+    height: 60vmax;
+    width: 60vmax;
+    z-index: -2;
+  }
+  &:after {
+    height: 40vmax;
+    width: 40vmax;
+    z-index: -1;
+  }
+}
+
+.not-found-main {
+  text-align: center;
+  z-index: 5;
+  max-width: 90%;
+}
+
+.not-found-content {
+  font-size: 2.2rem;
+  color: var(--light-grey);
+  margin-top: 0;
+}
+
+.not-found-title {
+  font-size: 8rem;
+  color: var(--light-grey);
+  margin: 0;
+}
+/*REMINDER: me add transiotions!!*/
+.not-found-btn {
+  margin: 12px 4px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 20px;
+
+  background: linear-gradient(var(--title-color), var(--accent-color));
+  box-shadow: 0 30px 15px rgba(#000, 0.15);
+  outline: none;
+  color: var(--light-grey);
+
+  font: var(--font);
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  
+  }
+
+
+.not-found-bubble {
+  background: linear-gradient(var(--title-color), var(--accent-color));
+  border-radius: 50%;
+  box-shadow: 0 30px 15px rgba(#000, 0.15);
+  position: absolute;
+
+  &:before,
+  &:after {
+    content: '';
+    background: linear-gradient(var(--title-color), var(--accent-color));
+    border-radius: 50%;
+    box-shadow: 0 30px 15px rgba(#000, 0.15);
+    position: absolute;
+  }
+
+}
