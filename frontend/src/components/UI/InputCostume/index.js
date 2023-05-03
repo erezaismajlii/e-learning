@@ -31,6 +31,7 @@ function InputCustom(props) {
     inputProps: PropTypes.any,
   };
   
- 
+
+  
   export default InputCustom;
   
