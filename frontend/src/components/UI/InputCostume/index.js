@@ -31,7 +31,11 @@ function InputCustom(props) {
     inputProps: PropTypes.any,
   };
   
-
+  InputCustom.defaultProps = {
+    endAdornment: null,
+    error: false,
+    inputProps: {},
+  };
   
   export default InputCustom;
   
