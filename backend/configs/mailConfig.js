@@ -35,5 +35,32 @@ const resetPasswordMail = (url) => {
   </div>
 `;
 };
+const sendEmail = (to, content) => {
+  const smtpTransport = nodemailer.createTransport({
+    service: "smtp.ethereal.mail",
+    port:587,
+    auth: {
+      user: process.env.NODE_MAILER_USER,
+      pass: process.env.NODE_MAILER_PASSWORD,
+    },
+  });
 
+  const mailOptions = {
+    from: process.env.NODE_MAILER_USER,
+    to: to,
+    subject: "English Website",
+    html: content,
+  };
+
+  smtpTransport.sendMail(mailOptions, (err, info) => {
+    if (err) return err;
+    return info;
+  });
+};
+
+module.exports = {
+  sendEmail,
+  activationEmail,
+  resetPasswordMail,
+};
 
