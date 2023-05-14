@@ -1,3 +1,12 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import GlobalLoading from '../components/UI/GlobalLoading';
+import { setMessage } from './../redux/actions/messageAction';
+import userApi from './../apis/userApi';
+import { logout } from './../redux/actions/authAction';
+import { UX } from "../constants";
+
 function LogoutPage() {
   const history = useHistory();
   const dispatch = useDispatch();
