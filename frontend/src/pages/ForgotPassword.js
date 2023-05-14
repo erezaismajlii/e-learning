@@ -5,6 +5,7 @@ import useCloseNavigation from "./../hooks/useCloseNavigation";
 import React, { useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import InputCustom from "../components/UI/InputCustom";
 import { formStyle } from "../components/UI/style";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -78,6 +79,18 @@ function ForgotPasswordPage() {
           </div>
 
           <div className="flex-col">
+            <InputCustom
+              label="Email"
+              size="small"
+              placeholder="Enter email"
+              onChange={handleChange}
+              error={Boolean(errors.email)}
+              inputProps={{
+                name: "email",
+                autoFocus: true,
+                ...register("email"),
+              }}
+            />
             {errors.email && (
               <p className="text-error">{errors.email?.message}</p>
             )}
