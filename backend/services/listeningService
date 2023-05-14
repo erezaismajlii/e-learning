@@ -1,0 +1,87 @@
+const ListeningModel = require("../models/listeningModel");
+
+exports.createListen = async (listeningInfo) => {
+  try {
+    const newListen = await ListeningModel.create({ ...listeningInfo });
+
+    if (newListen) {
+      return newListen;
+    }
+    return null;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.updateListen = async (_id = "", listeningInfo) => {
+  try {
+    const listen = await ListeningModel.findByIdAndUpdate(_id, listeningInfo);
+    if (listen) {
+      return listen;
+    }
+    return null;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.getListenById = async (_id) => {
+  try {
+    const res = await ListeningModel.findById(_id);
+
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.getAllListen = async (type) => {
+  try {
+    let list = null;
+    //Sap xep tang dan
+    if (type === "Newest") {
+      list = await ListeningModel.find({}).sort({ _id: -1 });
+    } else {
+      list = await ListeningModel.find({}).sort({ _id: 1 });
+    }
+
+    let listens = [];
+    if (list) {
+      list.forEach((item) => {
+        let {
+          _id,
+          CreateDate,
+          Name,
+          Topic,
+          Description,
+          Video,
+          Image,
+          Script,
+          isLocked
+        } = item;
+        const dd = CreateDate.getDate();
+        const mm = CreateDate.getMonth() + 1;
+        const yyyy = CreateDate.getFullYear();
+        const HH = CreateDate.getHours();
+        const MM = CreateDate.getMinutes();
+        const SS = CreateDate.getSeconds();
+
+        CreateDate = `${dd}/${mm}/${yyyy} ${HH}:${MM}:${SS}`;
+        listens.push({
+          _id,
+          CreateDate,
+          Name,
+          Topic,
+          Description,
+          Video,
+          Image,
+          Script,
+          isLocked
+        });
+      });
+    }
+    return listens;
+  } catch (error) {
+    throw error;
+  }
+};
