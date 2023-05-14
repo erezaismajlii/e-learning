@@ -1,3 +1,25 @@
+import "./style/login-signup.scss";
+import { ROUTES } from "../constants";
+import useTitle from "./../hooks/useTitle";
+import useCloseNavigation from "./../hooks/useCloseNavigation";
+import React, { useState } from "react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import InputCustom from "../components/UI/InputCustom";
+import { formStyle } from "../components/UI/style";
+import Button from "@material-ui/core/Button";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { Link, useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import userApi from "../apis/userApi";
+import { UX } from "../constants";
+import LoopIcon from "@material-ui/icons/Loop";
+import { setMessage } from "./../redux/actions/messageAction";
+import { useSelector } from "react-redux";
+
 const schema = yup.object().shape({
   email: yup.string().required("Email is empty").email("Invalid email"),
   password: yup
@@ -46,7 +68,8 @@ function LoginPage() {
       setLoading(false);
     }
   };
-   return (
+
+  return (
     <div className="pos-rel w-100vw h-100vh">
       <div className="transform-center">
         <form
