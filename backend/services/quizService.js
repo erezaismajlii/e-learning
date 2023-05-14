@@ -57,7 +57,7 @@ exports.deleteQuizByListenId = async (listenId = "") => {
   }
 };
 
-//get all
+//get all 
 exports.getAllQuizzes = async () => {
   try {
     const list = await QuizModel.find({});
