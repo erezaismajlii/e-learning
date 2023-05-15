@@ -12,12 +12,17 @@ const SubmitQuizModel = new Schema({
     maxlength: 200,
   },
 
-  
+  StartTime: {
+    type: Date,
+  },
+
+  FinishTime: {
+    type: Date,
+  },
 
   IsFinish: {
     type: Date,
   },
-  
 
   QuizId: {
     type: Schema.Types.ObjectId,
