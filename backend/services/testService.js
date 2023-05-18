@@ -26,4 +26,21 @@ exports.updateTest = async (id='', test) => {
   }
 };
 
+exports.getTestById = async (_id = "") => {
+  try {
+    const res = await TestModel.findById(_id);
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
 
+//get all
+exports.getAllTests = async () => {
+  try {
+    const list = await TestModel.find({});
+    return list;
+  } catch (error) {
+    throw error;
+  }
+};
