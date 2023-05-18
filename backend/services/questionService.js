@@ -34,6 +34,7 @@ exports.getQuestionById = async (_id = '') => {
     }
   };
 
+
   exports.getQuestionByQuizId = async (quizId = '') => {
     try {
       const res = await QuestionModel.find({QuizId: quizId});  
