@@ -13,9 +13,9 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getListening } from "../redux/actions/listeningAction";
-//import { useParams } from "react-router-dom";
-//import incorrectIcon from "assets/icons/checkAnswer/incorrect.gif";
-// import correctIcon from "assets/icons/checkAnswer/correct.gif";
+import { useParams } from "react-router-dom";
+import incorrectIcon from "assets/icons/checkAnswer/incorrect.gif";
+import correctIcon from "assets/icons/checkAnswer/correct.gif";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles((theme) => ({
