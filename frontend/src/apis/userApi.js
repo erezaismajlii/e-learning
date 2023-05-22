@@ -25,6 +25,10 @@ const userApi = {
   logout: () => {
     return axios.post(`${URL}/logout`);
   },
+
+  getTopCoin: () => {
+    return axios.get(`${URL}/get-top-coin`);
+  }
 };
   
 export default userApi;
