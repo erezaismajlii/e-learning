@@ -3,7 +3,7 @@ import InfiniteScroll from 'components/UI/InfiniteScroll';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import useStyle from './style';
-import ListenItem from './ListeningItem/index';
+import ListenItem from './ListeningItem/index'; 
 import GrammarItem from './GrammarItem/index';
 import WordPackSetting from './WordPackSetting';
 import WordSkeleton from './WordSkeleton';
