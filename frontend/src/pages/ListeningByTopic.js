@@ -41,4 +41,80 @@ const useStyle = makeStyles(() => ({
     width: "500px",
   },
 }));
+function ListeningByTopicPage() {
+  useTitle("Listening");
+  const [list, setList] = useState([]);
+  const classes = useStyle();
+  const history = useHistory();
+
+  const topic = useParams().topic;
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const apiRes = await listeningApi.getListenByTopic(topic, "Newest");
+        if (apiRes.status === 200) {
+          console.log(apiRes.data);
+          setList(apiRes.data.listens);
+        }
+      } catch (error) {}
+    })();
+
+    return () => {};
+  }, []);
+
+  const getImage = (image) => {
+    const imgSrc = cloudinaryImgOptimize(
+      image ? image : DEFAULTS.IMAGE_SRC,
+      200,
+      200,
+      true,
+      true
+    );
+    return imgSrc;
+  };
+
+  const viewDetail = (id) => {
+    history.push(`/listening/details/${id}`);
+  };
+
+  return (
+    <>
+      <Typography variant="h4" align="center">
+        {topic}
+      </Typography>
+      <div
+        className="container"
+        style={{ position: "relative", left: "250px" }}
+      >
+        {list &&
+          list.map((item) => (
+            <div className={classes.mobilelist}>
+              <div>
+                <Link to={`/listening/details/${item._id}`}>
+                  <div className={classes.floatleft}>
+                    <img
+                      height="80px"
+                      width="80px"
+                      src={getImage(item.Image)}
+                      alt=""
+                    />
+                  </div>
+                  <p className={classes.title}>
+                    <strong> {item.Name}</strong>
+                  </p>
+                  <br></br>
+                </Link>
+                <div className={classes.textlimit}>
+                  <span className={classes.tldetail}>{item.Description}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+    </>
+  );
+}
+
+export default ListeningByTopicPage;
 
