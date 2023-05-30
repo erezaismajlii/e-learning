@@ -150,3 +150,85 @@ export const getListenTopics = () => {
     }
 };
 
+export const postListen = (formData) => {
+  return async (dispatch, getState) => {
+      try { 
+        const {
+          authReducer: { user },
+        } = getState();
+
+        const response = await listeningApi.postListen(formData , user.access_token);
+        if(response.status===200){
+          dispatch({
+              type: LISTEN_CONSTANT.CREATE_LISTEN,
+              payload: response.data.listen,
+            })
+           // toast.success("Add successfully")
+        }
+        else
+        {
+          dispatch({
+            type: LISTEN_CONSTANT.SET_LISTEN_ERROR,
+            payload: response.data.message,
+          })
+        }
+      } catch (error) {
+        dispatch({ type: LISTEN_CONSTANT.SET_LISTEN_ERROR,
+            payload: error.response.message,
+        })
+      }
+    }
+};
+
+export const putListen = (id, formData) => {
+  return async (dispatch, getState) => {
+      try { 
+        const {
+          authReducer: { user },
+        } = getState();
+
+        const response = await listeningApi.putListen(id, formData , user.access_token);
+        if(response.status===200){
+          dispatch({
+              type: LISTEN_CONSTANT.EDIT_LISTEN,
+              payload: response.data.listen,
+            })
+          //  toast.success("Edit successfully")
+        }
+        else
+        {
+          dispatch({
+            type: LISTEN_CONSTANT.SET_LISTEN_ERROR,
+            payload: response.data.message,
+          })
+        }
+      } catch (error) {
+        dispatch({ type: LISTEN_CONSTANT.SET_LISTEN_ERROR,
+            payload: error.response.message,
+        })
+      }
+    }
+};
+
+export const deleteListen = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await listeningApi.deleteListen(id);
+      if (response.status===200) {
+        dispatch({
+          type: LISTEN_CONSTANT.DELETE_LISTEN,
+          payload: id,
+        })
+      }
+      else{
+        dispatch({ type: LISTEN_CONSTANT.SET_LISTEN_ERROR,
+          payload: response.data.message,
+      })
+      }
+    } catch (error) {
+        dispatch({ type: LISTEN_CONSTANT.SET_LISTEN_ERROR,
+            payload: error.response.message,
+        })
+    }
+  }
+}
